@@ -3,10 +3,38 @@
 
 ## Overview
 
-This repository will include artifacts related to "Context-Situated Pun Generation" to appear at EMNLP 2022. Stay tuned!
+This repository includes the collected dataset from "Context-Situated Pun Generation" appearing at EMNLP 2022 (paper available on [amazon.science](https://www.amazon.science/publications/context-situated-pun-generation) or [arXiv](https://arxiv.org/abs/2210.13522)).
 
-In the meantime, please check out the paper on [amazon.science](https://www.amazon.science/publications/context-situated-pun-generation) or [arXiv](https://arxiv.org/abs/2210.13522).
+The original SemEval 2017 Task 7 dataset (Miller et al., 2017) contains puns that are either homographic (exploiting polysemy) or heterographic (exploiting phonological similarity to another word). 
+We sample puns that contain both sense annotations and pun word annotations
+from SemEval Task 7. From this set, we sample from the 500 most
+frequent pun word/alter word pairs *(p<sub>w</sub>, a<sub>w</sub>)* and randomly sample 100
+unique context words *C*. Combining the sampled pun pairs and context words, we collect 4,552
+*(C, p<sub>w</sub>, a<sub>w</sub>)* instances for annotation.
+Full details on the data collection can be found in the paper (see [Citation](README.md#citation) section).
 
+## Sample Instance
+The excerpt below shows a sample data instance:
+```
+context	        pun_word    alter_word	pun_word_sense	                                                                                        alter_word_sense	                                                                        new_pun     user_pun
+25 cent,profit	charge	    charge	pay with a credit card; pay with plastic money; postpone payment by recording a purchase as a debt	energize a battery by passing a current through it in the direction opposite to discharge	yes	    The cashier said there was no charge for my battery.
+```
+
+## Description of Fields
+- *context:* Context words *C*, represented as a comma-separated list of keyword phrases (our dataset).
+- *pun_word:* Pun word *p<sub>w</sub>* (from SemEval 2017 Task 7).
+- *alter_word:* Alter word *a<sub>w</sub>* (from SemEval 2017 Task 7).
+- *pun_word_sense:* Word sense information for the pun word *S<sub>p<sub>w</sub></sub>* (retrieved from WordNet using SemEval annotated senses).
+- *alter_word_sense:* Word sense information for the alter word *S<sub>a<sub>w</sub></sub>* (retrieved from WordNet using SemEval annotated senses).
+- *new_pun:* whether the annotator could come up with a new pun using the given context keywords and pun/alter words (our dataset).
+- *user_pun:* if *new_pun* is *yes*, the text of the human-written pun that incorporates both the context keywords and the pun word (our dataset).
+
+## Data File
+In this repository, we release the full dataset of 4,552 annotated instances in the <b>C</b>ontext-Sit<b>U</b>ated <b>P</b>un (<b>CUP</b>) dataset.
+```
+├── data
+   └── context_situated_pun.csv (full dataset)
+```
 ## Security
 
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
